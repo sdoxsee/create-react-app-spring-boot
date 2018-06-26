@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.4.RELEASE</version>
+		<version>2.0.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -27,13 +27,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
@@ -44,83 +42,13 @@
 	</dependencies>
 
 	<build>
-		<defaultGoal>spring-boot:run</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<id>Install Node and Yarn</id>
-						<goals>
-								<goal>install-node-and-yarn</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>yarn install</id>
-						<goals>
-								<goal>yarn</goal>
-						</goals>
-						<configuration>
-								<arguments>install</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>Frontend production build</id>
-						<phase>prepare-package</phase>
-						<goals>
-								<goal>yarn</goal>
-						</goals>
-						<configuration>
-								<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<nodeVersion>v8.1.4</nodeVersion>
-					<yarnVersion>v0.27.5</yarnVersion>
-					<installDirectory>.mvn</installDirectory>
-					<workingDirectory>src/main/app</workingDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.0.1</version>
-				<executions>
-						<execution>
-								<id>Copy frontend production build to resources</id>
-								<phase>prepare-package</phase>
-								<goals>
-										<goal>copy-resources</goal>
-								</goals>
-								<configuration>
-										<outputDirectory>${basedir}/target/classes/static</outputDirectory>
-										<resources>
-												<resource>
-														<directory>src/main/app/build/</directory>
-														<filtering>true</filtering>
-												</resource>
-										</resources>
-								</configuration>
-						</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>src/main/app/build</directory>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
+
+
 </project>
